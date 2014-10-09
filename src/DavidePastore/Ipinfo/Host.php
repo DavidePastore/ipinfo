@@ -48,13 +48,6 @@ class Host {
 	}
 	
 	/**
-	 * Get the geo value.
-	 */
-	public function getGeo(){
-		return $this->properties[Ipinfo::GEO];
-	}
-	
-	/**
 	 * Get the hostname value.
 	 */
 	public function getHostname(){
