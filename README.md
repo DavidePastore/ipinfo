@@ -11,7 +11,7 @@ You can install the library using composer. Add these lines in your composer.jso
 
 ```json
 "require" : {
-	"davidepastore/ipinfo" : "dev-master"
+	"davidepastore/ipinfo" : "0.1.0"
 }
 ```
 
