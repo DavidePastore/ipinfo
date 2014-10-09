@@ -1,0 +1,20 @@
+{
+	"keywords" : [
+		"ipinfo"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"" : "src/"
+		}
+	},
+	"name" : "davidepastore/ipinfo",
+	"license" : "GPL-2.0+",
+	"type" : "library",
+	"require" : {
+		"php" : ">=5.3"
+	},
+	"description" : "A wrapper around the ipinfo.io services",
+	"require-dev" : {
+		"phpunit/phpunit" : "3.7.*"
+	}
+}
