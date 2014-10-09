@@ -1,7 +1,7 @@
 ipinfo
 ======
 
-A wrapper around the ipinfo.io services.
+A wrapper around the [ipinfo.io](http://ipinfo.io/) services.
 
 
 Install
@@ -9,8 +9,11 @@ Install
 
 You can install the library using composer. Add these lines in your composer.json:
 
-
-
+```json
+"require" : {
+	"davidepastore/ipinfo" : "dev-master"
+}
+```
 
 How to use
 ----------
@@ -30,21 +33,11 @@ $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 You can read all the properties from the given ip.
 
 ```php
-//Get all properties
+//Get all the properties
 $host = $ipInfo->getFullIpDetails("8.8.8.8");
 
-//Read all properties
-$city = $host->getCity();
-$country = $host->getCountry();
-$hostname = $host->getHostname();
-$ip = $host->getIp();
-$loc = $host->getLoc();
-$org = $host->getOrg();
-$phone = $host->getPhone();
-$region = $host->getRegion();
-
-//Get only a single property
-$city = $ipInfo->getSpecificField(DavidePastore\Ipinfo\Ipinfo::CITY);
+//Get only a single property (this could save bandwidth)
+$city = $ipInfo->getSpecificField("8.8.8.8", DavidePastore\Ipinfo\Ipinfo::CITY);
 ```
 
 ### Read details about your ip
@@ -52,10 +45,19 @@ $city = $ipInfo->getSpecificField(DavidePastore\Ipinfo\Ipinfo::CITY);
 You can read all the properties from your ip.
 
 ```php
-//Get all properties
-$host = $ipInfo->getYourOwnIpSpecificField("8.8.8.8");
+//Get all the properties
+$host = $ipInfo->getYourOwnIpSpecificField();
 
-//Read all properties
+//Get only a single property (this could save bandwidth)
+$city = $ipInfo->getYourOwnIpSpecificField(DavidePastore\Ipinfo\Ipinfo::CITY);
+```
+
+### Get info from the host
+
+After obtaining the `Host` instance you can read all the properties or each of them individually.
+
+```php
+//Read all the properties
 $city = $host->getCity();
 $country = $host->getCountry();
 $hostname = $host->getHostname();
@@ -65,17 +67,22 @@ $org = $host->getOrg();
 $phone = $host->getPhone();
 $region = $host->getRegion();
 
-//Get only a single property
-$city = $ipInfo->getSpecificField(DavidePastore\Ipinfo\Ipinfo::CITY);
+//Get the associative array with all the properties
+$properties = $host->getProperties();
 ```
 
 ### Read only a field
 
-There are different constants that you could use to read specific field value from an `Ipinfo` instance:
+There are different constants that you could use to read specific field value from an `Ipinfo` instance using the `getSpecificField()` and `getYourOwnIpSpecificField()` methods:
 
 ```php
-IpInfo::IP;
-IpInfo::IP;
-IpInfo::IP;
-IpInfo::IP;
+IpInfo::IP; //For the ip address
+IpInfo::HOSTNAME; //For the hostname
+IpInfo::LOC; //For the loc
+IpInfo::ORG; //For the org
+IpInfo::CITY; //For the city
+IpInfo::REGION; //For the region
+IpInfo::COUNTRY; //For the country
+IpInfo::PHONE; //For the phone
+IpInfo::GEO; //For the geo info. This is the only value that will return an Host object from getSpecificField()
 ```
