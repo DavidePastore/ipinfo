@@ -11,7 +11,8 @@
 	"license" : "GPL-2.0+",
 	"type" : "library",
 	"require" : {
-		"php" : ">=5.3"
+		"php" : ">=5.3",
+		"ext-curl": "*"
 	},
 	"description" : "A wrapper around the ipinfo.io services",
 	"require-dev" : {
