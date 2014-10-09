@@ -17,7 +17,6 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase {
 		$expected = new Host(array(
 			"city"		=>	"Mountain View",
 			"country"	=>	"US",
-			"geo"		=>	"",
 			"hostname"	=>	"google-public-dns-a.google.com",
 			"ip"		=>	"8.8.8.8",
 			"loc"		=>	"37.3860,-122.0838",
