@@ -24,7 +24,6 @@ class Host {
 		$this->properties = array_merge(array(
 				Ipinfo::CITY => "",
 				Ipinfo::COUNTRY => "",
-				Ipinfo::GEO => "",
 				Ipinfo::HOSTNAME => "",
 				Ipinfo::IP => "",
 				Ipinfo::LOC => "",
