@@ -86,3 +86,8 @@ IpInfo::COUNTRY; //For the country
 IpInfo::PHONE; //For the phone
 IpInfo::GEO; //For the geo info. This is the only value that will return an Host object from getSpecificField()
 ```
+
+Issues
+-------
+
+If you have issues, just open one [here](https://github.com/DavidePastore/ipinfo/issues).
