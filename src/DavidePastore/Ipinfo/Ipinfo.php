@@ -121,11 +121,8 @@ class Ipinfo {
 	 * \DavidePastore\Ipinfo\Ipinfo::GEO.
 	 */
 	public function getSpecificField($ipAddress, $field){
-		$response = substr($this->makeCurlRequest($this::BASE_URL . $ipAddress . "/" . $field), 0, -1);
-		if($field == $this::GEO){
-			$response = json_decode($response, true);
-			$response = new Host($response);
-		}
+		$response = $this->makeCurlRequest($this::BASE_URL . $ipAddress . "/" . $field);
+		$response = $this->checkGeo($field, $response);
 		return $response;
 	}
 	
@@ -137,11 +134,28 @@ class Ipinfo {
 	 * \DavidePastore\Ipinfo\Ipinfo::GEO.
 	 */
 	public function getYourOwnIpSpecificField($field){
-		$response = substr($this->makeCurlRequest($this::BASE_URL . $field), 0, -1);
+		$response = $this->makeCurlRequest($this::BASE_URL . $field);
+		$response = $this->checkGeo($field, $response);
+		return $response;
+	}
+	
+	/**
+	 * Check if the response is GEO and set the parameters accordingly.
+	 * @param string $field The field value.
+	 * @param string $response The response from the server.
+	 * @return Ambigous <\DavidePastore\Ipinfo\Host, string> Returns an Host object if the request is
+	 * of the GEO type, a string otherwise. If the field value is different from the GEO type, it will
+	 * delete the last character ('\n').
+	 */
+	private function checkGeo($field, $response){
 		if($field == $this::GEO){
 			$response = json_decode($response, true);
 			$response = new Host($response);
 		}
+		else{
+			$response = substr($response, 0, -1);
+		}
+		
 		return $response;
 	}
 	
