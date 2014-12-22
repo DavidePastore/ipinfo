@@ -7,7 +7,7 @@ A wrapper around the [ipinfo.io](http://ipinfo.io/) services.
 Install
 -------
 
-You can install the library using composer. Add these lines in your composer.json:
+You can install the library using [composer](https://getcomposer.org/). Add these lines in your composer.json:
 
 ```json
 "require" : {
