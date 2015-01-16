@@ -107,7 +107,7 @@ class Ipinfo {
 	 * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
 	 */
 	public function getFullIpDetails($ipAddress){
-		$response = $this->makeCurlRequest($this::BASE_URL . $ipAddress);
+		$response = $this->makeCurlRequest($this::BASE_URL . $ipAddress . '/json');
 		$response = json_decode($response, true);
 		return new Host($response);
 	}
