@@ -39,4 +39,27 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase {
 	
 		$this->assertEquals($expected, $actual);
 	}
+	
+	/**
+	 * Test the faster geo call
+	 */
+	public function testGeoDetails()
+	{
+		$ipinfo = new Ipinfo();
+		$expected = new Host(array(
+			"city"		=>	"Mountain View",
+			"country"	=>	"US",
+			"ip"		=>	"8.8.8.8",
+			"loc"		=>	"37.385999999999996,-122.0838",
+			"region"	=>	"California",
+			
+			// Other fields will be empty by default
+			"hostname"	=>	"",
+			"org"		=>	"",
+			"phone"		=>	"",
+		));
+		$actual = $ipinfo->getIpGeoDetails("8.8.8.8");
+	
+		$this->assertEquals($expected, $actual);
+	}
 }
