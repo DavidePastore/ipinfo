@@ -140,6 +140,18 @@ class Ipinfo {
 	}
 	
 	/**
+	 * Use the /geo call to get just the geolocation information, which will often be 
+	 * faster than getting the full response.
+	 * 
+	 * @param string $ipAddress The ip address.
+	 * @return \DavidePastore\Ipinfo\Host
+	 */
+	public function getIpGeoDetails($ipAddress)
+	{
+		return $this->getSpecificField($ipAddress, $this::GEO);
+	}
+	
+	/**
 	 * Check if the response is GEO and set the parameters accordingly.
 	 * @param string $field The field value.
 	 * @param string $response The response from the server.

@@ -84,7 +84,26 @@ IpInfo::CITY; //For the city
 IpInfo::REGION; //For the region
 IpInfo::COUNTRY; //For the country
 IpInfo::PHONE; //For the phone
-IpInfo::GEO; //For the geo info. This is the only value that will return an Host object from getSpecificField()
+IpInfo::GEO; //For the geo info. See the paragraph below for more info
+```
+
+### Read only the Geo data (which is faster)
+
+By u using the `getIpGeoDetails()` method you will get less fields. This call tends to be faster than `getFullIpDetails()` so use this call in case you only need the following fields:
+
+```php
+IpInfo::IP; //For the ip address
+IpInfo::CITY; //For the city
+IpInfo::REGION; //For the region
+IpInfo::COUNTRY; //For the country
+IpInfo::PHONE; //For the phone
+```
+
+These fields will be empty:
+```php
+IpInfo::HOSTNAME; //For the hostname
+IpInfo::LOC; //For the loc
+IpInfo::ORG; //For the org
 ```
 
 Issues
