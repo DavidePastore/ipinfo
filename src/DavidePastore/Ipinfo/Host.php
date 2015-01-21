@@ -20,6 +20,9 @@ class Host {
 	 * @param unknown $properties
 	 */
 	public function __construct($properties = array()){
+		if (!$properties) {
+			$properties = array();
+		}
 		//Merge default values
 		$this->properties = array_merge(array(
 				Ipinfo::CITY => "",
