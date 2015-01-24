@@ -68,6 +68,12 @@ class Ipinfo {
 	 * @var string
 	 */
 	const GEO = "geo";
+    
+    /**
+	 * The postal string.
+	 * @var string
+	 */
+	const POSTAL = "postal";
 	
 	/**
 	 * All the settings

@@ -65,6 +65,7 @@ $ip = $host->getIp();
 $loc = $host->getLoc();
 $org = $host->getOrg();
 $phone = $host->getPhone();
+$postal = $host->getPostal();
 $region = $host->getRegion();
 
 //Get the associative array with all the properties
@@ -84,6 +85,7 @@ IpInfo::CITY; //For the city
 IpInfo::REGION; //For the region
 IpInfo::COUNTRY; //For the country
 IpInfo::PHONE; //For the phone
+IpInfo::POSTAL; //For the postal
 IpInfo::GEO; //For the geo info. See the paragraph below for more info
 ```
 
@@ -97,6 +99,7 @@ IpInfo::CITY; //For the city
 IpInfo::REGION; //For the region
 IpInfo::COUNTRY; //For the country
 IpInfo::PHONE; //For the phone
+IpInfo::POSTAL; //For the postal
 ```
 
 These fields will be empty:

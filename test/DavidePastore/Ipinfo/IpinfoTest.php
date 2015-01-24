@@ -22,6 +22,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase {
 			"loc"		=>	"37.3860,-122.0838",
 			"org"		=>	"AS15169 Google Inc.",
 			"phone"		=>	"",
+			"postal"	=>	"94035",
 			"region"	=>	"California"
 		));
 		$actual = $ipinfo->getFullIpDetails("8.8.8.8");
@@ -50,7 +51,8 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase {
 			"city"		=>	"Mountain View",
 			"country"	=>	"US",
 			"ip"		=>	"8.8.8.8",
-			"loc"		=>	"37.385999999999996,-122.0838",
+			"loc"		=>	"37.3860,-122.0838",
+			"postal"	=>	"94035",
 			"region"	=>	"California",
 			
 			// Other fields will be empty by default

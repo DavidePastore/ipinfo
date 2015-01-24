@@ -32,6 +32,7 @@ class Host {
 				Ipinfo::LOC => "",
 				Ipinfo::ORG => "",
 				Ipinfo::PHONE => "",
+				Ipinfo::POSTAL => "",
 				Ipinfo::REGION => ""
 		), $properties);
 	}
@@ -83,6 +84,13 @@ class Host {
 	 */
 	public function getPhone(){
 		return $this->properties[Ipinfo::PHONE];
+	}
+    
+    /**
+	 * Get the postal value.
+	 */
+	public function getPostal(){
+		return $this->properties[Ipinfo::POSTAL];
 	}
 
 	/**
