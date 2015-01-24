@@ -91,7 +91,7 @@ IpInfo::GEO; //For the geo info. See the paragraph below for more info
 
 ### Read only the Geo data (which is faster)
 
-By u using the `getIpGeoDetails()` method you will get less fields. This call tends to be faster than `getFullIpDetails()` so use this call in case you only need the following fields:
+By using the `getIpGeoDetails()` method you will get less fields. This call tends to be faster than `getFullIpDetails()` so use this call in case you only need the following fields:
 
 ```php
 IpInfo::IP; //For the ip address
