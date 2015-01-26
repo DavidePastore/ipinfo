@@ -1,6 +1,8 @@
 ipinfo
 ======
 
+[![Build Status](https://travis-ci.org/DavidePastore/ipinfo.svg?branch=master)](https://travis-ci.org/DavidePastore/ipinfo)
+
 
 A wrapper around the [ipinfo.io](http://ipinfo.io/) services.
 
