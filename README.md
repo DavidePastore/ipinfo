@@ -49,7 +49,7 @@ You can read all the properties from your ip.
 
 ```php
 //Get all the properties
-$host = $ipInfo->getYourOwnIpSpecificField();
+$host = $ipInfo->getYourOwnIpDetails();
 
 //Get only a single property (this could save bandwidth)
 $city = $ipInfo->getYourOwnIpSpecificField(DavidePastore\Ipinfo\Ipinfo::CITY);
