@@ -25,6 +25,12 @@ You can install the library using [composer](https://getcomposer.org/). Add thes
 }
 ```
 
+or launch:
+
+```sh
+$ composer require davidepastore/ipinfo
+```
+
 How to use
 ----------
 
