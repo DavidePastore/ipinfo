@@ -4,41 +4,39 @@ namespace DavidePastore\Ipinfo;
 
 /**
  * Represent an host with all the details.
- * @author davidepastore
  *
+ * @author davidepastore
  */
 class Host
 {
-    
     /**
      * Contains all the properties of the host.
+     *
      * @var array
      */
     protected $properties;
-    
+
     /**
      * Create an Host object with all the properties.
-     * @param unknown $properties
+     *
+     * @param array $properties
      */
     public function __construct($properties = array())
     {
-        if (!$properties) {
-            $properties = array();
-        }
         //Merge default values
         $this->properties = array_merge(array(
-                Ipinfo::CITY => "",
-                Ipinfo::COUNTRY => "",
-                Ipinfo::HOSTNAME => "",
-                Ipinfo::IP => "",
-                Ipinfo::LOC => "",
-                Ipinfo::ORG => "",
-                Ipinfo::PHONE => "",
-                Ipinfo::POSTAL => "",
-                Ipinfo::REGION => ""
+                Ipinfo::CITY => '',
+                Ipinfo::COUNTRY => '',
+                Ipinfo::HOSTNAME => '',
+                Ipinfo::IP => '',
+                Ipinfo::LOC => '',
+                Ipinfo::ORG => '',
+                Ipinfo::PHONE => '',
+                Ipinfo::POSTAL => '',
+                Ipinfo::REGION => '',
         ), $properties);
     }
-    
+
     /**
      * Get the city value.
      */
@@ -46,7 +44,7 @@ class Host
     {
         return $this->properties[Ipinfo::CITY];
     }
-    
+
     /**
      * Get the country value.
      */
@@ -54,7 +52,7 @@ class Host
     {
         return $this->properties[Ipinfo::COUNTRY];
     }
-    
+
     /**
      * Get the hostname value.
      */
@@ -70,7 +68,7 @@ class Host
     {
         return $this->properties[Ipinfo::IP];
     }
-    
+
     /**
      * Get the loc value.
      */
@@ -86,7 +84,7 @@ class Host
     {
         return $this->properties[Ipinfo::ORG];
     }
-    
+
     /**
      * Get the phone value.
      */
@@ -94,7 +92,7 @@ class Host
     {
         return $this->properties[Ipinfo::PHONE];
     }
-    
+
     /**
      * Get the postal value.
      */
@@ -110,9 +108,10 @@ class Host
     {
         return $this->properties[Ipinfo::REGION];
     }
-    
+
     /**
      * Get all the properties.
+     *
      * @return array An associative array with all the properties.
      */
     public function getProperties()
