@@ -118,7 +118,7 @@ class Ipinfo
     public function getYourOwnIpDetails()
     {
         $response = $this->makeCurlRequest($this::BASE_URL.'json');
-        $response = json_decode($response, true);
+        $response = $this->jsonDecodeResponse($response);
 
         return new Host($response);
     }
@@ -133,7 +133,7 @@ class Ipinfo
     public function getFullIpDetails($ipAddress)
     {
         $response = $this->makeCurlRequest($this::BASE_URL.$ipAddress);
-        $response = json_decode($response, true);
+        $response = $this->jsonDecodeResponse($response);
 
         return new Host($response);
     }
@@ -199,7 +199,7 @@ class Ipinfo
     private function checkGeo($field, $response)
     {
         if ($field == $this::GEO) {
-            $response = json_decode($response, true);
+            $response = $this->jsonDecodeResponse($response);
             $response = new Host($response);
         } else {
             $response = substr($response, 0, -1);
@@ -236,6 +236,20 @@ class Ipinfo
 
         curl_close($curl);
 
+        return $response;
+    }
+
+    /**
+     * Returns the json decoded associative array.
+     * @param  string $response Response from the http call.
+     * @return array           Returns the associative array with the response.
+     */
+    private function jsonDecodeResponse($response){
+        if($response){
+          $response = json_decode($response, true);
+        } else {
+          $response = [];
+        }
         return $response;
     }
 }
