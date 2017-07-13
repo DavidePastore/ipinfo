@@ -21,9 +21,9 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
             'country' => 'US',
             'hostname' => 'google-public-dns-a.google.com',
             'ip' => '8.8.8.8',
-            'loc' => '37.3860,-122.0838',
+            'loc' => '37.3860,-122.0840',
             'org' => 'AS15169 Google Inc.',
-            'phone' => '',
+            'phone' => '650',
             'postal' => '94035',
             'region' => 'California',
         ));
@@ -42,9 +42,9 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $expectedCountry = 'US';
         $expectedHostname = 'google-public-dns-a.google.com';
         $expectedIp = '8.8.8.8';
-        $expectedLoc = '37.3860,-122.0838';
+        $expectedLoc = '37.3860,-122.0840';
         $expectedOrg = 'AS15169 Google Inc.';
-        $expectedPhone = '';
+        $expectedPhone = '650';
         $expectedPostal = '94035';
         $expectedRegion = 'California';
         $expected = array(
@@ -94,14 +94,14 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
             'city' => 'Mountain View',
             'country' => 'US',
             'ip' => '8.8.8.8',
-            'loc' => '37.3860,-122.0838',
+            'loc' => '37.3860,-122.0840',
             'postal' => '94035',
             'region' => 'California',
 
             // Other fields will be empty by default
             'hostname' => '',
             'org' => '',
-            'phone' => '',
+            'phone' => '650',
         ));
         $actual = $ipinfo->getIpGeoDetails('8.8.8.8');
 
