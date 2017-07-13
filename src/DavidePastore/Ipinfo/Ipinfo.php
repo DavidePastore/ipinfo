@@ -246,9 +246,9 @@ class Ipinfo
      */
     private function jsonDecodeResponse($response){
         if($response){
-          $response = json_decode($response, true);
+            $response = json_decode($response, true);
         } else {
-          $response = [];
+            $response = [];
         }
         return $response;
     }
