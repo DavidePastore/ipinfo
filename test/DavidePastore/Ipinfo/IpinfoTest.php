@@ -166,4 +166,30 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * Test a null response.
+     */
+    public function testNullResponse()
+    {
+        require_once 'WrongIpinfo.php';
+        $ipinfo = new DavidePastore\Ipinfo\WrongIpinfo();
+
+        $expected = new Host(array(
+            'city' => '',
+            'country' => '',
+            'ip' => '',
+            'loc' => '',
+            'postal' => '',
+            'region' => '',
+
+            // Other fields will be empty by default
+            'hostname' => '',
+            'org' => '',
+            'phone' => '',
+        ));
+        $actual = $ipinfo->getIpGeoDetails('asd/qwerty');
+
+        $this->assertEquals($expected, $actual);
+    }
 }
