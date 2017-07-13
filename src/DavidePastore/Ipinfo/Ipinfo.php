@@ -249,7 +249,7 @@ class Ipinfo
         if ($response) {
             $response = json_decode($response, true);
         } else {
-            $response = [];
+            $response = array();
         }
         return $response;
     }
