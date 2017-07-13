@@ -244,7 +244,8 @@ class Ipinfo
      * @param  string $response Response from the http call.
      * @return array           Returns the associative array with the response.
      */
-    private function jsonDecodeResponse($response){
+    private function jsonDecodeResponse($response)
+    {
         if($response){
             $response = json_decode($response, true);
         } else {
