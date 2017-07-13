@@ -4,7 +4,7 @@ before_script:
   - composer self-update
   - composer update --prefer-source
 
-script: phpunit --testsuite travis-ci
+script: vendor/bin/phpunit --testsuite travis-ci
 
 php:
   - 5.3
