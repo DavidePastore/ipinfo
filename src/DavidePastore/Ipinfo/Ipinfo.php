@@ -2,6 +2,8 @@
 
 namespace DavidePastore\Ipinfo;
 
+use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
+
 /**
  * ipinfo.io service wrapper.
  *
@@ -243,11 +245,17 @@ class Ipinfo
      * Returns the json decoded associative array.
      * @param  string $response Response from the http call.
      * @return array           Returns the associative array with the response.
+     * @throws RateLimitExceedException    If you exceed the rate limit.
      */
     private function jsonDecodeResponse($response)
     {
         if ($response) {
-            $response = json_decode($response, true);
+            // Check if the response contains an error message
+            if(strpos($response, 'Rate limit exceeded.')) {
+                throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
+            } else {
+                $response = json_decode($response, true);
+            }
         } else {
             $response = array();
         }
