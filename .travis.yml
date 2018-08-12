@@ -16,6 +16,9 @@ matrix:
   include:
     - php: "5.3"
       dist: precise
+  allow_failures:
+    - php: hhvm
+    - php: 5.3
 
 script:
   - vendor/bin/phpunit --testsuite travis-ci
