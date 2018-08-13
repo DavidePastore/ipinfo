@@ -22,7 +22,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
             'hostname' => 'google-public-dns-a.google.com',
             'ip' => '8.8.8.8',
             'loc' => '37.3860,-122.0840',
-            'org' => 'AS15169 Google Inc.',
+            'org' => 'AS15169 Google LLC',
             'phone' => '650',
             'postal' => '94035',
             'region' => 'California',
@@ -43,7 +43,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $expectedHostname = 'google-public-dns-a.google.com';
         $expectedIp = '8.8.8.8';
         $expectedLoc = '37.3860,-122.0840';
-        $expectedOrg = 'AS15169 Google Inc.';
+        $expectedOrg = 'AS15169 Google LLC';
         $expectedPhone = '650';
         $expectedPostal = '94035';
         $expectedRegion = 'California';
