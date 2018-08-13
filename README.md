@@ -125,6 +125,20 @@ IpInfo::LOC; //For the loc
 IpInfo::ORG; //For the org
 ```
 
+### Error Handling
+
+It could happen that your API call exceeds the rate limit. You can handle it by catching the `RateLimitExceedException`:
+
+```php
+use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
+
+try {
+    $host = $ipInfo->getFullIpDetails("8.8.8.8");
+} catch (RateLimitExceedException $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+```
+
 Issues
 -------
 
