@@ -192,4 +192,15 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * Test a null response.
+     * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
+     */
+    public function testRateLimitExceed()
+    {
+        require_once 'RateLimitExceedIpinfo.php';
+        $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
+        $actual = $ipinfo->getYourOwnIpDetails();
+    }
 }
