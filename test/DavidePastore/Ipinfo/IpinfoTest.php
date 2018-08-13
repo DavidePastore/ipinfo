@@ -133,8 +133,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     public function testGetYourOwnIpSpecificField()
     {
         $ipinfo = new Ipinfo();
-        $expected = 'Mountain View';
-        $actual = $ipinfo->getYourOwnIpSpecificField(Ipinfo::CITY);
+        $actual = $ipinfo->getYourOwnIpSpecificField(Ipinfo::COUNTRY);
 
         $this->assertTrue(is_string($actual));
     }
@@ -191,5 +190,16 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $actual = $ipinfo->getIpGeoDetails('asd/qwerty');
 
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test a null response.
+     * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
+     */
+    public function testRateLimitExceed()
+    {
+        require_once 'RateLimitExceedIpinfo.php';
+        $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
+        $actual = $ipinfo->getYourOwnIpDetails();
     }
 }
