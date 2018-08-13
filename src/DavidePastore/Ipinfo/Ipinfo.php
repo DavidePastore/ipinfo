@@ -251,7 +251,7 @@ class Ipinfo
     {
         if ($response) {
             // Check if the response contains an error message
-            if(strpos($response, 'Rate limit exceeded.')) {
+            if (strpos($response, 'Rate limit exceeded.')) {
                 throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
             } else {
                 $response = json_decode($response, true);
