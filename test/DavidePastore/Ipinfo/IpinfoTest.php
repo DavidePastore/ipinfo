@@ -133,7 +133,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     public function testGetYourOwnIpSpecificField()
     {
         $ipinfo = new Ipinfo();
-        $actual = $ipinfo->getYourOwnIpSpecificField(Ipinfo::CITY);
+        $actual = $ipinfo->getYourOwnIpSpecificField(Ipinfo::COUNTRY);
 
         $this->assertTrue(is_string($actual));
     }
