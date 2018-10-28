@@ -2,6 +2,7 @@
 
 namespace DavidePastore\Ipinfo;
 
+use DavidePastore\Ipinfo\Exception\InvalidTokenException;
 use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
 
 /**
@@ -204,6 +205,7 @@ class Ipinfo
             $response = $this->jsonDecodeResponse($response);
             $response = new Host($response);
         } else {
+            $this->checkErrors($response);
             $response = substr($response, 0, -1);
         }
 
@@ -236,6 +238,11 @@ class Ipinfo
 
         $response = curl_exec($curl);
 
+        if ($response === false && $this->settings['debug']) {
+            $error = curl_error($curl);
+            echo "The error is".$error;
+        }
+
         curl_close($curl);
 
         return $response;
@@ -246,19 +253,31 @@ class Ipinfo
      * @param  string $response Response from the http call.
      * @return array           Returns the associative array with the response.
      * @throws RateLimitExceedException    If you exceed the rate limit.
+     * @throws InvalidTokenException If the used token is invalid.
      */
     private function jsonDecodeResponse($response)
     {
         if ($response) {
             // Check if the response contains an error message
-            if (strpos($response, 'Rate limit exceeded.') !== false) {
-                throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
-            } else {
-                $response = json_decode($response, true);
-            }
+            $this->checkErrors($response);
+            $response = json_decode($response, true);
         } else {
             $response = array();
         }
         return $response;
+    }
+
+    /**
+     * Check if the given response has some kind of errors.
+     * @param string $response The response to check.
+     * @throws RateLimitExceedException    If you exceed the rate limit.
+     * @throws InvalidTokenException If the used token is invalid.
+     */
+    private function checkErrors($response){
+        if (strpos($response, 'Rate limit exceeded.') !== false) {
+            throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
+        } else if (strpos($response, 'Unknown token.') !== false) {
+            throw new InvalidTokenException("The used token is invalid. The complete response is $response");
+        }
     }
 }
