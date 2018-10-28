@@ -273,10 +273,11 @@ class Ipinfo
      * @throws RateLimitExceedException    If you exceed the rate limit.
      * @throws InvalidTokenException If the used token is invalid.
      */
-    private function checkErrors($response){
+    private function checkErrors($response)
+    {
         if (strpos($response, 'Rate limit exceeded.') !== false) {
             throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
-        } else if (strpos($response, 'Unknown token.') !== false) {
+        } elseif (strpos($response, 'Unknown token.') !== false) {
             throw new InvalidTokenException("The used token is invalid. The complete response is $response");
         }
     }
