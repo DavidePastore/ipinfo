@@ -127,6 +127,34 @@ IpInfo::ORG; //For the org
 
 ### Error Handling
 
+You can handle all the types of IpInfo exceptions by catching the `IpInfoExceptionException`:
+
+```php
+use DavidePastore\Ipinfo\Exception\IpInfoExceptionException;
+
+try {
+    $host = $ipInfo->getFullIpDetails("8.8.8.8");
+} catch (IpInfoExceptionException $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+```
+
+#### Invalid Token Exception
+
+It could happen that the token you are using to make the API call is not valid. You can handle it by catching the `InvalidTokenException`:
+
+```php
+use DavidePastore\Ipinfo\Exception\InvalidTokenException;
+
+try {
+    $host = $ipInfo->getFullIpDetails("8.8.8.8");
+} catch (InvalidTokenException $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+```
+
+#### Rate Limit Exceed Exception
+
 It could happen that your API call exceeds the rate limit. You can handle it by catching the `RateLimitExceedException`:
 
 ```php
