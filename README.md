@@ -48,11 +48,21 @@ $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 
 #### Timeout of the connection
 
-You can set the timeout of the connection (in seconds) when you instantiate the object:
+The number of seconds to wait while trying to connect when you instantiate the object:
 
 ```php
 $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 	"connectionTimeout" => 100
+));
+```
+
+#### Timeout of cURL
+
+You can set the maximum number of seconds to allow cURL functions to execute when you instantiate the object:
+
+```php
+$ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
+	"timeout" => 100
 ));
 ```
 
