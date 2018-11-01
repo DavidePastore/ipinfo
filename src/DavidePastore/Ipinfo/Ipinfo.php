@@ -17,7 +17,7 @@ class Ipinfo
      *
      * @var string
      */
-    const BASE_URL = 'http://ipinfo.io/';
+    const BASE_URL = 'https://ipinfo.io/';
 
     /**
      * The ip string.
@@ -234,6 +234,7 @@ class Ipinfo
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $address,
+            CURLOPT_CAINFO => __DIR__ . "/cacert.pem"
         ));
 
         $response = curl_exec($curl);
