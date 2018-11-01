@@ -144,7 +144,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     public function testWithToken()
     {
         $ipinfo = new Ipinfo(array(
-          'token' => 'justatest',
+          'token' => ' ',
         ));
         $expected = 'Mountain View';
         $actual = $ipinfo->getSpecificField('8.8.8.8', Ipinfo::CITY);
