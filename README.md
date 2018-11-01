@@ -34,13 +34,25 @@ $ composer require davidepastore/ipinfo
 How to use
 ----------
 
-### Set your token
+### Settings
+
+#### Token
 
 You can set your token when you instantiate the object but it's not mandatory.
 
 ```php
 $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 	"token" => "your_api_key"
+));
+```
+
+#### Timeout of the requests
+
+You can set the timeout of the requests (in seconds) when you instantiate the object:
+
+```php
+$ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
+	"timeout" => 100
 ));
 ```
 

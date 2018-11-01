@@ -109,6 +109,7 @@ class Ipinfo
         //Merge user settings
         $this->settings = array_merge(array(
                 'token' => '',
+                'timeout' => 0,
                 'debug' => false,
         ), $settings);
     }
@@ -234,6 +235,7 @@ class Ipinfo
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $address,
+            CURLOPT_CONNECTTIMEOUT => $this->settings['timeout'],
             CURLOPT_CAINFO => __DIR__ . "/cacert.pem"
         ));
 
