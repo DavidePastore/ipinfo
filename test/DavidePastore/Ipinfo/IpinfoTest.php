@@ -153,6 +153,18 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test with a wrong token.
+     * @expectedException DavidePastore\Ipinfo\Exception\InvalidTokenException
+     */
+    public function testWithWrongToken()
+    {
+        $ipinfo = new Ipinfo(array(
+          'token' => 'wrong-token',
+        ));
+        $ipinfo->getSpecificField('8.8.8.8', Ipinfo::CITY);
+    }
+
+    /**
      * Test in debug mode.
      */
     public function testDebugMode()
