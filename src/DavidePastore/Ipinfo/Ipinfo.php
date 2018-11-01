@@ -277,9 +277,9 @@ class Ipinfo
     private function checkErrors($response)
     {
         if (strpos($response, 'Rate limit exceeded.') !== false) {
-            throw new RateLimitExceedException("You exceed the rate limit. The complete response is $response");
+            throw new RateLimitExceedException("You exceed the rate limit.", $response);
         } elseif (strpos($response, 'Unknown token.') !== false) {
-            throw new InvalidTokenException("The used token is invalid. The complete response is $response");
+            throw new InvalidTokenException("The used token is invalid.", $response);
         }
     }
 }
