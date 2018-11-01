@@ -46,13 +46,13 @@ $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 ));
 ```
 
-#### Timeout of the requests
+#### Timeout of the connection
 
-You can set the timeout of the requests (in seconds) when you instantiate the object:
+You can set the timeout of the connection (in seconds) when you instantiate the object:
 
 ```php
 $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
-	"timeout" => 100
+	"connectionTimeout" => 100
 ));
 ```
 
