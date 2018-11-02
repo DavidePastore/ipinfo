@@ -14,7 +14,8 @@
     "type": "library",
     "require": {
         "php": ">=5.3",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "description": "A wrapper around the ipinfo.io services",
     "require-dev": {
