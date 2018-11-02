@@ -119,6 +119,8 @@ class Ipinfo
      * Get all the info about your own ip address.
      *
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     public function getYourOwnIpDetails()
     {
@@ -134,6 +136,8 @@ class Ipinfo
      * @param string $ipAddress The ip address.
      *
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     public function getFullIpDetails($ipAddress)
     {
@@ -147,11 +151,13 @@ class Ipinfo
      * Get a specific field value.
      *
      * @param string $ipAddress The ip address.
-     * @param string $field     The field.
+     * @param string $field The field.
      *
      * @return string|\DavidePastore\Ipinfo\Host The value of the given field for the given ip.
      *                                           This could returns an Host object if you call it with for the field
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     public function getSpecificField($ipAddress, $field)
     {
@@ -169,6 +175,8 @@ class Ipinfo
      * @return string|\DavidePastore\Ipinfo\Host The value of the given field for your own ip.
      *                                           This could returns an Host object if you call it with for the field
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     public function getYourOwnIpSpecificField($field)
     {
@@ -185,6 +193,8 @@ class Ipinfo
      * @param string $ipAddress The ip address.
      *
      * @return \DavidePastore\Ipinfo\Host
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     public function getIpGeoDetails($ipAddress)
     {
@@ -194,12 +204,14 @@ class Ipinfo
     /**
      * Check if the response is GEO and set the parameters accordingly.
      *
-     * @param string $field    The field value.
+     * @param string $field The field value.
      * @param string $response The response from the server.
      *
      * @return Ambigous <\DavidePastore\Ipinfo\Host, string> Returns an Host object if the request is
      *                  of the GEO type, a string otherwise. If the field value is different from the GEO type, it will
      *                  delete the last character ('\n').
+     * @throws InvalidTokenException
+     * @throws RateLimitExceedException
      */
     private function checkGeo($field, $response)
     {
