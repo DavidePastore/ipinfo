@@ -207,7 +207,7 @@ class Ipinfo
      * @param string $field The field value.
      * @param string $response The response from the server.
      *
-     * @return Ambigous <\DavidePastore\Ipinfo\Host, string> Returns an Host object if the request is
+     * @return \DavidePastore\Ipinfo\Host|string Returns an Host object if the request is
      *                  of the GEO type, a string otherwise. If the field value is different from the GEO type, it will
      *                  delete the last character ('\n').
      * @throws InvalidTokenException
