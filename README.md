@@ -46,23 +46,19 @@ $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 ));
 ```
 
-#### Timeout of the connection
+#### cURL options
 
-The number of seconds to wait while trying to connect when you instantiate the object:
-
-```php
-$ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
-	"connectionTimeout" => 100
-));
-```
-
-#### Timeout of cURL
-
-You can set the maximum number of seconds to allow cURL functions to execute when you instantiate the object:
+The cURL options to use while trying to connect when you instantiate the object:
 
 ```php
 $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
-	"timeout" => 100
+	"curlOptions" => array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $address,
+            CURLOPT_CONNECTTIMEOUT => 1,
+            CURLOPT_TIMEOUT => 2,
+            CURLOPT_CAINFO => __DIR__ . "/cacert.pem"
+    )
 ));
 ```
 
