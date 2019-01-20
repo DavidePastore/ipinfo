@@ -53,7 +53,6 @@ The cURL options to use while trying to connect when you instantiate the object:
 ```php
 $ipInfo = new DavidePastore\Ipinfo\Ipinfo(array(
 	"curlOptions" => array(
-            CURLOPT_URL => $address,
             CURLOPT_CONNECTTIMEOUT => 1,
             CURLOPT_TIMEOUT => 2,
             CURLOPT_CAINFO => __DIR__ . "/cacert.pem"
