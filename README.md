@@ -21,7 +21,7 @@ You can install the library using [composer](https://getcomposer.org/). Add thes
 
 ```json
 "require" : {
-	"davidepastore/ipinfo" : "^0.3.*"
+	"davidepastore/ipinfo" : "^0.4.*"
 }
 ```
 
