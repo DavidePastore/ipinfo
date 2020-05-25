@@ -6,8 +6,6 @@ ipinfo
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
-
-[![Build Status][ico-phpeye]][link-phpeye]
 [![PSR2 Conformance][ico-styleci]][link-styleci]
 
 
@@ -194,7 +192,6 @@ If you have issues, just open one [here](https://github.com/DavidePastore/ipinfo
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/DavidePastore/ipinfo.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/davidepastore/ipinfo.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/DavidePastore/ipinfo.svg?style=flat-square
-[ico-phpeye]: http://php-eye.com/badge/DavidePastore/ipinfo/tested.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/24985619/shield
 
 [link-packagist]: https://packagist.org/packages/DavidePastore/ipinfo
@@ -202,5 +199,4 @@ If you have issues, just open one [here](https://github.com/DavidePastore/ipinfo
 [link-scrutinizer]: https://scrutinizer-ci.com/g/DavidePastore/ipinfo/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/DavidePastore/ipinfo
 [link-downloads]: https://packagist.org/packages/DavidePastore/ipinfo
-[link-phpeye]: http://php-eye.com/package/DavidePastore/ipinfo
 [link-styleci]: https://styleci.io/repos/24985619/
