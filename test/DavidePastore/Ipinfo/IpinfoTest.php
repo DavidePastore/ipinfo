@@ -17,15 +17,17 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     {
         $ipinfo = new Ipinfo();
         $expected = new Host(array(
-            'city' => 'Mountain View',
+            'city' => 'Bartlett',
             'country' => 'US',
-            'hostname' => 'google-public-dns-a.google.com',
+            'hostname' => 'dns.google',
             'ip' => '8.8.8.8',
-            'loc' => '37.3860,-122.0840',
+            'loc' => '41.9950,-88.1856',
             'org' => 'AS15169 Google LLC',
-            'phone' => '650',
-            'postal' => '94035',
-            'region' => 'California',
+            'phone' => '',
+            'postal' => '60103',
+            'region' => 'Illinois',
+            'timezone' => 'America/Chicago',
+            'readme' => 'https://ipinfo.io/missingauth'
         ));
         $actual = $ipinfo->getFullIpDetails('8.8.8.8');
 
@@ -38,7 +40,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     public function testAllGet()
     {
         $ipinfo = new Ipinfo();
-        $expectedCity = 'Mountain View';
+        $expectedCity = 'Bartlett';
         $expectedCountry = 'US';
         $expectedHostname = 'google-public-dns-a.google.com';
         $expectedIp = '8.8.8.8';
@@ -78,7 +80,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     public function testGetSpecificField()
     {
         $ipinfo = new Ipinfo();
-        $expected = 'Mountain View';
+        $expected = 'Bartlett';
         $actual = $ipinfo->getSpecificField('8.8.8.8', Ipinfo::CITY);
 
         $this->assertEquals($expected, $actual);
@@ -91,17 +93,19 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
     {
         $ipinfo = new Ipinfo();
         $expected = new Host(array(
-            'city' => 'Mountain View',
+            'city' => 'Bartlett',
             'country' => 'US',
             'ip' => '8.8.8.8',
-            'loc' => '37.3860,-122.0840',
-            'postal' => '94035',
-            'region' => 'California',
+            'loc' => '41.9950,-88.1856',
+            'postal' => '60103',
+            'region' => 'Illinois',
 
             // Other fields will be empty by default
             'hostname' => '',
             'org' => '',
-            'phone' => '650',
+            'phone' => '',
+            'timezone' => 'America/Chicago',
+            'readme' => 'https://ipinfo.io/missingauth'
         ));
         $actual = $ipinfo->getIpGeoDetails('8.8.8.8');
 
@@ -146,7 +150,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $ipinfo = new Ipinfo(array(
           'token' => ' ',
         ));
-        $expected = 'Mountain View';
+        $expected = 'Bartlett';
         $actual = $ipinfo->getSpecificField('8.8.8.8', Ipinfo::CITY);
 
         $this->assertEquals($expected, $actual);
@@ -172,7 +176,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $ipinfo = new Ipinfo(array(
           'debug' => true,
         ));
-        $expected = 'Mountain View';
+        $expected = 'Bartlett';
         $actual = $ipinfo->getSpecificField('8.8.8.8', Ipinfo::CITY);
 
         $this->assertEquals($expected, $actual);
