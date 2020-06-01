@@ -294,7 +294,7 @@ class Ipinfo
     {
         if (strpos($response, 'Rate limit exceeded.') !== false) {
             throw new RateLimitExceedException("You exceed the rate limit.", $response);
-        } elseif (strpos($response, 'Unknown token.') !== false) {
+        } elseif (strpos($response, 'Unknown token') !== false) {
             throw new InvalidTokenException("The used token is invalid.", $response);
         }
     }
