@@ -1,8 +1,10 @@
 filter:
     excluded_paths:
         - test/*
-checks:
-    php: true
+
+build:
+    environment:
+        php: 5.6.16
 
 tools:
     external_code_coverage:
