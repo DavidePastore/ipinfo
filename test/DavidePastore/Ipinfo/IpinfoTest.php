@@ -103,7 +103,7 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
             'postal' => '60103',
             'region' => 'Illinois',
             'timezone' => 'America/Chicago',
-            'readme' => 'https://ipinfo.io/missingauth'
+            'readme' => 'https://ipinfo.io/missingauth',
 
             // Other fields will be empty by default
             'hostname' => '',
