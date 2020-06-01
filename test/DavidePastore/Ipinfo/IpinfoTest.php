@@ -42,13 +42,14 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
         $ipinfo = new Ipinfo();
         $expectedCity = 'Bartlett';
         $expectedCountry = 'US';
-        $expectedHostname = 'google-public-dns-a.google.com';
+        $expectedHostname = 'dns.google';
         $expectedIp = '8.8.8.8';
-        $expectedLoc = '37.3860,-122.0840';
+        $expectedLoc = '41.9950,-88.1856';
         $expectedOrg = 'AS15169 Google LLC';
-        $expectedPhone = '650';
-        $expectedPostal = '94035';
-        $expectedRegion = 'California';
+        $expectedPhone = '';
+        $expectedPostal = '60103';
+        $expectedRegion = 'Illinois';
+        $expectedTimezone = 'America/Chicago';
         $expected = array(
           'city' => $expectedCity,
           'country' => $expectedCountry,
@@ -59,6 +60,8 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
           'phone' => $expectedPhone,
           'postal' => $expectedPostal,
           'region' => $expectedRegion,
+          'timezone' => $expectedTimezone,
+          'readme' => 'https://ipinfo.io/missingauth'
         );
         $actual = $ipinfo->getFullIpDetails('8.8.8.8');
 
@@ -99,13 +102,13 @@ class IpinfoTest extends \PHPUnit_Framework_TestCase
             'loc' => '41.9950,-88.1856',
             'postal' => '60103',
             'region' => 'Illinois',
+            'timezone' => 'America/Chicago',
+            'readme' => 'https://ipinfo.io/missingauth'
 
             // Other fields will be empty by default
             'hostname' => '',
             'org' => '',
-            'phone' => '',
-            'timezone' => 'America/Chicago',
-            'readme' => 'https://ipinfo.io/missingauth'
+            'phone' => ''
         ));
         $actual = $ipinfo->getIpGeoDetails('8.8.8.8');
 
