@@ -15,15 +15,7 @@ A wrapper around the [ipinfo.io](http://ipinfo.io/) services.
 Install
 -------
 
-You can install the library using [composer](https://getcomposer.org/). Add these lines in your composer.json:
-
-```json
-"require" : {
-	"davidepastore/ipinfo" : "^0.4.*"
-}
-```
-
-or launch:
+You can install the library using [composer](https://getcomposer.org/):
 
 ```sh
 $ composer require davidepastore/ipinfo
