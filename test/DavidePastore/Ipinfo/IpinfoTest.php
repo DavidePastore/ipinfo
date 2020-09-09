@@ -2,13 +2,14 @@
 
 use DavidePastore\Ipinfo\Ipinfo;
 use DavidePastore\Ipinfo\Host;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the Ipinfo class.
  *
  * @author davidepastore
  */
-class IpinfoTest extends \PHPUnit_Framework_TestCase
+class IpinfoTest extends TestCase
 {
     /**
      * Test full ip details.
