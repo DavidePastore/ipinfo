@@ -213,7 +213,7 @@ class IpinfoTest extends TestCase
     }
 
     /**
-     * Test a null response.
+     * Test a rate limit error.
      * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
      */
     public function testRateLimitExceed()
@@ -221,5 +221,30 @@ class IpinfoTest extends TestCase
         require_once 'RateLimitExceedIpinfo.php';
         $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
         $actual = $ipinfo->getYourOwnIpDetails();
+    }
+
+    /**
+     * Test an error during the calling (e.g. a failed connection).
+     */
+    public function testCurlError()
+    {
+        $hasError = false;
+        try {
+            $ipinfo = new Ipinfo(array(
+                'curlOptions' => array(
+                    CURLOPT_CAINFO => __DIR__ . "/cacert.pem",
+                ),
+            ));
+
+            $ipinfo->getFullIpDetails('8.8.8.8');
+        } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
+            $hasError = true;
+            $this->assertEquals('cURL error', $exception->getMessage());
+            $this->assertStringStartsWith('error setting certificate verify locations', $exception->getFullMessage());
+        }
+
+        if (!$hasError) {
+            $this->fail('No exception thrown');
+        }
     }
 }

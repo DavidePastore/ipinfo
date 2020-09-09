@@ -13,4 +13,8 @@ class IpInfoException extends \Exception
         parent::__construct($error);
         $this->fullMessage = $fullMessage;
     }
+
+    public function getFullMessage() {
+        return $this->fullMessage;
+    }
 }

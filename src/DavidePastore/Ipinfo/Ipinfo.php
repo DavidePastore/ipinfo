@@ -3,6 +3,7 @@
 namespace DavidePastore\Ipinfo;
 
 use DavidePastore\Ipinfo\Exception\InvalidTokenException;
+use DavidePastore\Ipinfo\Exception\IpInfoException;
 use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
 
 /**
@@ -257,9 +258,16 @@ class Ipinfo
 
         $response = curl_exec($curl);
 
-        if ($response === false && $this->settings['debug']) {
-            $error = curl_error($curl);
-            echo "The error is".$error;
+        if (curl_errno($curl)) {
+            $errorMessage = curl_error($curl);
+
+            if ($this->settings['debug']) {
+                echo "The error is".$errorMessage;
+            }
+        }
+
+        if (isset($errorMessage)) {
+            throw new IpInfoException('cURL error', $errorMessage);
         }
 
         curl_close($curl);
