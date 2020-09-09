@@ -244,8 +244,10 @@ class Ipinfo
             echo 'Request address: '.$address."\n";
         }
 
-        curl_setopt_array($curl,
-            array_replace($this->settings['curlOptions'],
+        curl_setopt_array(
+            $curl,
+            array_replace(
+                $this->settings['curlOptions'],
                 array(
                     CURLOPT_RETURNTRANSFER => 1,
                     CURLOPT_URL => $address
