@@ -191,8 +191,9 @@ class IpinfoTest extends TestCase
      */
     public function testNullResponse()
     {
-        require_once 'WrongIpinfo.php';
-        $ipinfo = new DavidePastore\Ipinfo\WrongIpinfo();
+        $ipinfo = new Ipinfo(array(
+            'debug' => true,
+        ));
 
         $expected = new Host(array(
             'city' => '',
