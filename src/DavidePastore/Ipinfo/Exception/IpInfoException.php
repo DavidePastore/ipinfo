@@ -14,7 +14,8 @@ class IpInfoException extends \Exception
         $this->fullMessage = $fullMessage;
     }
 
-    public function getFullMessage() {
+    public function getFullMessage()
+    {
         return $this->fullMessage;
     }
 }
