@@ -292,14 +292,16 @@ class Ipinfo
      */
     private function jsonDecodeResponse($response)
     {
+        $output = array();
         if ($response) {
             // Check if the response contains an error message
             $this->checkErrors($response);
-            $response = json_decode($response, true);
-        } else {
-            $response = array();
+            $output = json_decode($response, true);
+            if ($output === null && json_last_error() !== JSON_ERROR_NONE) {
+                throw new IpInfoException("Wrong response", $response);
+            }
         }
-        return $response;
+        return $output;
     }
 
     /**

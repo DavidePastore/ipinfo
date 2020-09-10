@@ -204,7 +204,18 @@ class IpinfoTest extends TestCase
     public function testWrongIp()
     {
         $ipinfo = new Ipinfo();
-        $ipinfo->getIpGeoDetails('asd/qwerty');
+        $ipinfo->getIpGeoDetails('qwerty');
+    }
+
+    /**
+     * Test a malformed ASN response.
+     * @expectedException DavidePastore\Ipinfo\Exception\IpInfoException
+     * @expectedExceptionMessage Wrong response
+     */
+    public function testMalformedASN()
+    {
+        $ipinfo = new Ipinfo();
+        $ipinfo->getIpGeoDetails('asd');
     }
 
     /**
