@@ -122,6 +122,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getYourOwnIpDetails()
     {
@@ -139,6 +140,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getFullIpDetails($ipAddress)
     {
@@ -159,6 +161,7 @@ class Ipinfo
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getSpecificField($ipAddress, $field)
     {
@@ -178,6 +181,7 @@ class Ipinfo
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getYourOwnIpSpecificField($field)
     {
@@ -196,6 +200,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getIpGeoDetails($ipAddress)
     {
@@ -213,6 +218,7 @@ class Ipinfo
      *                  delete the last character ('\n').
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     private function checkGeo($field, $response)
     {
@@ -282,6 +288,7 @@ class Ipinfo
      * @return array           Returns the associative array with the response.
      * @throws RateLimitExceedException    If you exceed the rate limit.
      * @throws InvalidTokenException If the used token is invalid.
+     * @throws WrongIpException If the used token is invalid.
      */
     private function jsonDecodeResponse($response)
     {
