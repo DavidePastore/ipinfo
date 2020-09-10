@@ -5,6 +5,7 @@ namespace DavidePastore\Ipinfo;
 use DavidePastore\Ipinfo\Exception\InvalidTokenException;
 use DavidePastore\Ipinfo\Exception\IpInfoException;
 use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
+use DavidePastore\Ipinfo\Exception\WrongIpException;
 
 /**
  * ipinfo.io service wrapper.
@@ -299,6 +300,7 @@ class Ipinfo
      * @param string $response The response to check.
      * @throws RateLimitExceedException    If you exceed the rate limit.
      * @throws InvalidTokenException If the used token is invalid.
+     * @throws WrongIpException If the used token is invalid.
      */
     private function checkErrors($response)
     {
@@ -306,6 +308,8 @@ class Ipinfo
             throw new RateLimitExceedException("You exceed the rate limit.", $response);
         } elseif (strpos($response, 'Unknown token') !== false) {
             throw new InvalidTokenException("The used token is invalid.", $response);
+        } elseif (strpos($response, 'Wrong ip') !== false) {
+            throw new WrongIpException("The used IP address is not valid.", $response);
         }
     }
 }

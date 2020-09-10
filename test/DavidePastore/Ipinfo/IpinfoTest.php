@@ -187,33 +187,6 @@ class IpinfoTest extends TestCase
     }
 
     /**
-     * Test a null response.
-     */
-    public function testNullResponse()
-    {
-        $ipinfo = new Ipinfo(array(
-            'debug' => true,
-        ));
-
-        $expected = new Host(array(
-            'city' => '',
-            'country' => '',
-            'ip' => '',
-            'loc' => '',
-            'postal' => '',
-            'region' => '',
-
-            // Other fields will be empty by default
-            'hostname' => '',
-            'org' => '',
-            'phone' => '',
-        ));
-        $actual = $ipinfo->getIpGeoDetails('asd/qwerty');
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
      * Test a rate limit error.
      * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
      */
@@ -222,6 +195,16 @@ class IpinfoTest extends TestCase
         require_once 'RateLimitExceedIpinfo.php';
         $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
         $actual = $ipinfo->getYourOwnIpDetails();
+    }
+
+    /**
+     * Test a wrong ip response.
+     * @expectedException DavidePastore\Ipinfo\Exception\WrongIpException
+     */
+    public function testWrongIp()
+    {
+        $ipinfo = new Ipinfo();
+        $ipinfo->getIpGeoDetails('asd/qwerty');
     }
 
     /**
