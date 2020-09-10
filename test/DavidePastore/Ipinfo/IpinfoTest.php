@@ -227,7 +227,7 @@ class IpinfoTest extends TestCase
         try {
             $ipinfo = new Ipinfo(array(
                 'curlOptions' => array(
-                    CURLOPT_CAINFO => __DIR__ . "wrong/path/cacert.pem",
+                    CURLOPT_PROXY => '127.0.0.1:8888',
                 ),
             ));
 
@@ -235,7 +235,7 @@ class IpinfoTest extends TestCase
         } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
             $hasError = true;
             $this->assertEquals('cURL error', $exception->getMessage());
-            $this->assertStringStartsWith('error setting certificate verify locations', $exception->getFullMessage());
+            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888: Connection refused', $exception->getFullMessage());
         }
 
         if (!$hasError) {
