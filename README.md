@@ -173,6 +173,20 @@ try {
 }
 ```
 
+#### Wrong Ip Exception
+
+It could happen that your API call is trying to obtain info about a wrong ip. You can handle it by catching the `WrongIpException`:
+
+```php
+use DavidePastore\Ipinfo\Exception\WrongIpException;
+
+try {
+    $host = $ipInfo->getFullIpDetails("qwerty");
+} catch (WrongIpException $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+```
+
 Issues
 -------
 
