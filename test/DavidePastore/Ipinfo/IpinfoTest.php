@@ -187,33 +187,7 @@ class IpinfoTest extends TestCase
     }
 
     /**
-     * Test a null response.
-     */
-    public function testNullResponse()
-    {
-        require_once 'WrongIpinfo.php';
-        $ipinfo = new DavidePastore\Ipinfo\WrongIpinfo();
-
-        $expected = new Host(array(
-            'city' => '',
-            'country' => '',
-            'ip' => '',
-            'loc' => '',
-            'postal' => '',
-            'region' => '',
-
-            // Other fields will be empty by default
-            'hostname' => '',
-            'org' => '',
-            'phone' => '',
-        ));
-        $actual = $ipinfo->getIpGeoDetails('asd/qwerty');
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Test a null response.
+     * Test a rate limit error.
      * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
      */
     public function testRateLimitExceed()
@@ -221,5 +195,51 @@ class IpinfoTest extends TestCase
         require_once 'RateLimitExceedIpinfo.php';
         $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
         $actual = $ipinfo->getYourOwnIpDetails();
+    }
+
+    /**
+     * Test a wrong ip response.
+     * @expectedException DavidePastore\Ipinfo\Exception\WrongIpException
+     */
+    public function testWrongIp()
+    {
+        $ipinfo = new Ipinfo();
+        $ipinfo->getIpGeoDetails('qwerty');
+    }
+
+    /**
+     * Test a malformed ASN response.
+     * @expectedException DavidePastore\Ipinfo\Exception\IpInfoException
+     * @expectedExceptionMessage Wrong response
+     */
+    public function testMalformedASN()
+    {
+        $ipinfo = new Ipinfo();
+        $ipinfo->getIpGeoDetails('asd');
+    }
+
+    /**
+     * Test an error during the calling (e.g. a failed connection).
+     */
+    public function testCurlError()
+    {
+        $hasError = false;
+        try {
+            $ipinfo = new Ipinfo(array(
+                'curlOptions' => array(
+                    CURLOPT_PROXY => '127.0.0.1:8888',
+                ),
+            ));
+
+            $ipinfo->getFullIpDetails('8.8.8.8');
+        } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
+            $hasError = true;
+            $this->assertEquals('cURL error', $exception->getMessage());
+            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888: Connection refused', $exception->getFullMessage());
+        }
+
+        if (!$hasError) {
+            $this->fail('No exception thrown');
+        }
     }
 }

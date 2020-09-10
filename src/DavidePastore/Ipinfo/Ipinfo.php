@@ -3,7 +3,9 @@
 namespace DavidePastore\Ipinfo;
 
 use DavidePastore\Ipinfo\Exception\InvalidTokenException;
+use DavidePastore\Ipinfo\Exception\IpInfoException;
 use DavidePastore\Ipinfo\Exception\RateLimitExceedException;
+use DavidePastore\Ipinfo\Exception\WrongIpException;
 
 /**
  * ipinfo.io service wrapper.
@@ -120,6 +122,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getYourOwnIpDetails()
     {
@@ -137,6 +140,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host The Host object with all the info.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getFullIpDetails($ipAddress)
     {
@@ -157,6 +161,7 @@ class Ipinfo
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getSpecificField($ipAddress, $field)
     {
@@ -176,6 +181,7 @@ class Ipinfo
      *                                           \DavidePastore\Ipinfo\Ipinfo::GEO.
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getYourOwnIpSpecificField($field)
     {
@@ -194,6 +200,7 @@ class Ipinfo
      * @return \DavidePastore\Ipinfo\Host
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     public function getIpGeoDetails($ipAddress)
     {
@@ -211,6 +218,7 @@ class Ipinfo
      *                  delete the last character ('\n').
      * @throws InvalidTokenException
      * @throws RateLimitExceedException
+     * @throws WrongIpException
      */
     private function checkGeo($field, $response)
     {
@@ -257,9 +265,16 @@ class Ipinfo
 
         $response = curl_exec($curl);
 
-        if ($response === false && $this->settings['debug']) {
-            $error = curl_error($curl);
-            echo "The error is".$error;
+        if (curl_errno($curl)) {
+            $errorMessage = curl_error($curl);
+
+            if ($this->settings['debug']) {
+                echo "The error is".$errorMessage;
+            }
+        }
+
+        if (isset($errorMessage)) {
+            throw new IpInfoException('cURL error', $errorMessage);
         }
 
         curl_close($curl);
@@ -273,17 +288,20 @@ class Ipinfo
      * @return array           Returns the associative array with the response.
      * @throws RateLimitExceedException    If you exceed the rate limit.
      * @throws InvalidTokenException If the used token is invalid.
+     * @throws WrongIpException If the used token is invalid.
      */
     private function jsonDecodeResponse($response)
     {
+        $output = array();
         if ($response) {
             // Check if the response contains an error message
             $this->checkErrors($response);
-            $response = json_decode($response, true);
-        } else {
-            $response = array();
+            $output = json_decode($response, true);
+            if ($output === null && json_last_error() !== JSON_ERROR_NONE) {
+                throw new IpInfoException("Wrong response", $response);
+            }
         }
-        return $response;
+        return $output;
     }
 
     /**
@@ -291,6 +309,7 @@ class Ipinfo
      * @param string $response The response to check.
      * @throws RateLimitExceedException    If you exceed the rate limit.
      * @throws InvalidTokenException If the used token is invalid.
+     * @throws WrongIpException If the used token is invalid.
      */
     private function checkErrors($response)
     {
@@ -298,6 +317,8 @@ class Ipinfo
             throw new RateLimitExceedException("You exceed the rate limit.", $response);
         } elseif (strpos($response, 'Unknown token') !== false) {
             throw new InvalidTokenException("The used token is invalid.", $response);
+        } elseif (strpos($response, 'Wrong ip') !== false) {
+            throw new WrongIpException("The used IP address is not valid.", $response);
         }
     }
 }
