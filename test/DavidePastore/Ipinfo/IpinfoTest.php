@@ -227,7 +227,7 @@ class IpinfoTest extends TestCase
         try {
             $ipinfo = new Ipinfo(array(
                 'curlOptions' => array(
-                    CURLOPT_CAINFO => __DIR__ . "/cacert.pem",
+                    CURLOPT_CAINFO => __DIR__ . "wrong/path/cacert.pem",
                 ),
             ));
 
