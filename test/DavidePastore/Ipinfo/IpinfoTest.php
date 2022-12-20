@@ -154,6 +154,7 @@ class IpinfoTest extends TestCase
      */
     public function testWithToken()
     {
+        $this->markTestSkipped('No token available for testing purpose');
         $ipinfo = new Ipinfo(array(
           'token' => ' ',
         ));
