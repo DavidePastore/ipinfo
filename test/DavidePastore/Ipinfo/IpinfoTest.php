@@ -28,7 +28,8 @@ class IpinfoTest extends TestCase
             'postal' => '94043',
             'region' => 'California',
             'timezone' => 'America/Los_Angeles',
-            'readme' => 'https://ipinfo.io/missingauth'
+            'readme' => 'https://ipinfo.io/missingauth',
+            'anycast' => true
         ));
         $actual = $ipinfo->getFullIpDetails('8.8.8.8');
 
@@ -62,7 +63,8 @@ class IpinfoTest extends TestCase
           'postal' => $expectedPostal,
           'region' => $expectedRegion,
           'timezone' => $expectedTimezone,
-          'readme' => 'https://ipinfo.io/missingauth'
+          'readme' => 'https://ipinfo.io/missingauth',
+          'anycast' => true
         );
         $actual = $ipinfo->getFullIpDetails('8.8.8.8');
 
@@ -105,10 +107,11 @@ class IpinfoTest extends TestCase
             'region' => 'California',
             'timezone' => 'America/Los_Angeles',
             'readme' => 'https://ipinfo.io/missingauth',
+            'anycast' => true,
 
             // Other fields will be empty by default
-            'hostname' => '',
-            'org' => '',
+            'hostname' => 'dns.google',
+            'org' => 'AS15169 Google LLC',
             'phone' => ''
         ));
         $actual = $ipinfo->getIpGeoDetails('8.8.8.8');
@@ -235,7 +238,7 @@ class IpinfoTest extends TestCase
         } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
             $hasError = true;
             $this->assertEquals('cURL error', $exception->getMessage());
-            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888: Connection refused', $exception->getFullMessage());
+            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888', $exception->getFullMessage());
         }
 
         if (!$hasError) {
