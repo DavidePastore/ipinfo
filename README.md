@@ -2,7 +2,7 @@ ipinfo
 ======
 
 [![Latest version][ico-version]][link-packagist]
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-github-actions]][link-github-actions]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -194,14 +194,14 @@ If you have issues, just open one [here](https://github.com/DavidePastore/ipinfo
 
 
 [ico-version]: https://img.shields.io/packagist/v/DavidePastore/ipinfo.svg?style=flat-square
-[ico-travis]: https://travis-ci.org/DavidePastore/ipinfo.svg?branch=master
+[ico-github-actions]: https://github.com/DavidePastore/ipinfo/workflows/Continuous%20Integration/badge.svg?branch=master
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/DavidePastore/ipinfo.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/davidepastore/ipinfo.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/DavidePastore/ipinfo.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/24985619/shield
 
 [link-packagist]: https://packagist.org/packages/DavidePastore/ipinfo
-[link-travis]: https://travis-ci.org/DavidePastore/ipinfo
+[link-github-actions]: https://github.com/DavidePastore/ipinfo/actions?query=workflow%3A%22Continuous+Integration%22
 [link-scrutinizer]: https://scrutinizer-ci.com/g/DavidePastore/ipinfo/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/DavidePastore/ipinfo
 [link-downloads]: https://packagist.org/packages/DavidePastore/ipinfo
