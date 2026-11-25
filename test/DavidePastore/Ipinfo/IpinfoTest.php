@@ -166,10 +166,11 @@ class IpinfoTest extends TestCase
 
     /**
      * Test with a wrong token.
-     * @expectedException DavidePastore\Ipinfo\Exception\InvalidTokenException
      */
     public function testWithWrongToken()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\InvalidTokenException::class);
+
         $ipinfo = new Ipinfo(array(
           'token' => 'wrong-token',
         ));
@@ -192,10 +193,11 @@ class IpinfoTest extends TestCase
 
     /**
      * Test a rate limit error.
-     * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
      */
     public function testRateLimitExceed()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\RateLimitExceedException::class);
+
         require_once 'RateLimitExceedIpinfo.php';
         $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
         $actual = $ipinfo->getYourOwnIpDetails();
@@ -203,21 +205,23 @@ class IpinfoTest extends TestCase
 
     /**
      * Test a wrong ip response.
-     * @expectedException DavidePastore\Ipinfo\Exception\WrongIpException
      */
     public function testWrongIp()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\WrongIpException::class);
+
         $ipinfo = new Ipinfo();
         $ipinfo->getIpGeoDetails('qwerty');
     }
 
     /**
      * Test a malformed ASN response.
-     * @expectedException DavidePastore\Ipinfo\Exception\IpInfoException
-     * @expectedExceptionMessage Wrong response
      */
     public function testMalformedASN()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\IpInfoException::class);
+        $this->expectExceptionMessage('Wrong response');
+
         $ipinfo = new Ipinfo();
         $ipinfo->getIpGeoDetails('asd');
     }
