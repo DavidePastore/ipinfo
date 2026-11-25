@@ -5,6 +5,13 @@ filter:
 build:
     environment:
         php: 7.2.33
+    dependencies:
+        override:
+            # packagist.org dropped Composer 1 support on 2025-09-01, and the
+            # system Composer in /usr/bin cannot be self-updated (no write access),
+            # so download Composer 2 into the home directory and use it instead.
+            - curl -sSfL -o "$HOME/composer.phar" https://getcomposer.org/download/latest-2.x/composer.phar
+            - php "$HOME/composer.phar" install --no-interaction --prefer-dist
 
 tools:
     external_code_coverage:

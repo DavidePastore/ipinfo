@@ -107,7 +107,6 @@ class IpinfoTest extends TestCase
             'region' => 'California',
             'timezone' => 'America/Los_Angeles',
             'readme' => 'https://ipinfo.io/missingauth',
-            'anycast' => true,
 
             // Other fields will be empty by default
             'hostname' => 'dns.google',
@@ -166,10 +165,11 @@ class IpinfoTest extends TestCase
 
     /**
      * Test with a wrong token.
-     * @expectedException DavidePastore\Ipinfo\Exception\InvalidTokenException
      */
     public function testWithWrongToken()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\InvalidTokenException::class);
+
         $ipinfo = new Ipinfo(array(
           'token' => 'wrong-token',
         ));
@@ -192,10 +192,11 @@ class IpinfoTest extends TestCase
 
     /**
      * Test a rate limit error.
-     * @expectedException DavidePastore\Ipinfo\Exception\RateLimitExceedException
      */
     public function testRateLimitExceed()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\RateLimitExceedException::class);
+
         require_once 'RateLimitExceedIpinfo.php';
         $ipinfo = new DavidePastore\Ipinfo\RateLimitExceedIpinfo();
         $actual = $ipinfo->getYourOwnIpDetails();
@@ -203,21 +204,23 @@ class IpinfoTest extends TestCase
 
     /**
      * Test a wrong ip response.
-     * @expectedException DavidePastore\Ipinfo\Exception\WrongIpException
      */
     public function testWrongIp()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\WrongIpException::class);
+
         $ipinfo = new Ipinfo();
         $ipinfo->getIpGeoDetails('qwerty');
     }
 
     /**
      * Test a malformed ASN response.
-     * @expectedException DavidePastore\Ipinfo\Exception\IpInfoException
-     * @expectedExceptionMessage Wrong response
      */
     public function testMalformedASN()
     {
+        $this->expectException(\DavidePastore\Ipinfo\Exception\IpInfoException::class);
+        $this->expectExceptionMessage('Wrong response');
+
         $ipinfo = new Ipinfo();
         $ipinfo->getIpGeoDetails('asd');
     }
@@ -239,7 +242,11 @@ class IpinfoTest extends TestCase
         } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
             $hasError = true;
             $this->assertEquals('cURL error', $exception->getMessage());
-            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888', $exception->getFullMessage());
+            // The wording depends on the cURL version, e.g.:
+            // - "Failed to connect to 127.0.0.1 port 8888: Connection refused"
+            // - "Failed to connect to ipinfo.io port 443 via 127.0.0.1 after 0 ms: Could not connect to server"
+            $this->assertStringStartsWith('Failed to connect to ', $exception->getFullMessage());
+            $this->assertStringContainsString('127.0.0.1', $exception->getFullMessage());
         }
 
         if (!$hasError) {
