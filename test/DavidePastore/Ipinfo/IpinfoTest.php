@@ -107,7 +107,6 @@ class IpinfoTest extends TestCase
             'region' => 'California',
             'timezone' => 'America/Los_Angeles',
             'readme' => 'https://ipinfo.io/missingauth',
-            'anycast' => true,
 
             // Other fields will be empty by default
             'hostname' => 'dns.google',
