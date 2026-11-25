@@ -196,7 +196,7 @@ If you have issues, just open one [here](https://github.com/DavidePastore/ipinfo
 [ico-version]: https://img.shields.io/packagist/v/DavidePastore/ipinfo.svg?style=flat-square
 [ico-github-actions]: https://github.com/DavidePastore/ipinfo/actions/workflows/continuous-integration.yml/badge.svg?branch=master
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/DavidePastore/ipinfo.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/davidepastore/ipinfo.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/quality/g/DavidePastore/ipinfo.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/DavidePastore/ipinfo.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/24985619/shield
 
