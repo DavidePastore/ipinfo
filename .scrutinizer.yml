@@ -12,6 +12,12 @@ build:
             # so download Composer 2 into the home directory and use it instead.
             - curl -sSfL -o "$HOME/composer.phar" https://getcomposer.org/download/latest-2.x/composer.phar
             - php "$HOME/composer.phar" install --no-interaction --prefer-dist
+    nodes:
+        analysis:
+            tests:
+                override:
+                    # Runs the PHP analysis that computes the code quality rating.
+                    - php-scrutinizer-run
 
 tools:
     external_code_coverage:
