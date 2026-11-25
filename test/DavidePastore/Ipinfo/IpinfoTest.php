@@ -242,7 +242,11 @@ class IpinfoTest extends TestCase
         } catch (DavidePastore\Ipinfo\Exception\IpInfoException $exception) {
             $hasError = true;
             $this->assertEquals('cURL error', $exception->getMessage());
-            $this->assertStringStartsWith('Failed to connect to 127.0.0.1 port 8888', $exception->getFullMessage());
+            // The wording depends on the cURL version, e.g.:
+            // - "Failed to connect to 127.0.0.1 port 8888: Connection refused"
+            // - "Failed to connect to ipinfo.io port 443 via 127.0.0.1 after 0 ms: Could not connect to server"
+            $this->assertStringStartsWith('Failed to connect to ', $exception->getFullMessage());
+            $this->assertStringContainsString('127.0.0.1', $exception->getFullMessage());
         }
 
         if (!$hasError) {
